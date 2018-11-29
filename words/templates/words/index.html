@@ -7,8 +7,8 @@
             <div class="ui simple dropdown item">Words
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item" href="#">Add Word</a>
-                    <a class="item" href="#">Add Category</a>
+                    <a id="add-word" class="item" href="#">Add Word</a>
+                    <a id="view-catergories" class="item" href="#">View by Category</a>
                 </div>
             </div>
         </div>
@@ -49,4 +49,17 @@
             </div>
         </div>
     </div>
+
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">Add Word</div>
+        <div class="content">
+            <div class="description">
+                <div class="ui header">
+                    Add a word and assign a category..
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/words/js/add_word_modal.js' %}"></script>
 {% endblock content %}
