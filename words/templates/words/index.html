@@ -57,10 +57,11 @@
                 <div class="ui header">
                     Add a word and assign a category...
                 </div>
-                <form class="ui form" action="">
-                    {% render_form add_word_form %}
+                <form class="ui form" action="/" method="post">
+                    {% csrf_token %}
+                    {{ form }}
                     <div class="ui buttons">
-                        <button class="ui button">Cancel</button>
+                        <button id="cancel-add" class="ui button" type="button">Cancel</button>
                         <div class="or"></div>
                         <button class="ui positive button" type="submit">Save</button>
                     </div>
