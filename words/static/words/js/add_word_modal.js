@@ -4,3 +4,10 @@ $("#add-word").click(function() {
         .modal('show')
     ;
 })
+j
+$("#cancel-add").click(function() {
+    console.log("opening add-word");
+    $('.ui.modal')
+        .modal('close')
+    ;
+})

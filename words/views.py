@@ -4,14 +4,32 @@ from django.shortcuts import render
 from django.views import View
 
 from words.models import Word
+from words.forms import AddWordForm
 
 # Create your views here.
 class IndexView(View):
     def get(self, request):
-        return render(request, 'words/index.html')
+        form = AddWordForm()
+        context = {'add_word_form': form}
+        success = True
+
+        return render(request, 'words/index.html', context)
+
+    def post(self, request):
+        success = False
+        form = AddWordForm(request.POST)
+        if form.is_valid():
+            form.save()
+            success = True
+
+        blank_form = AddWordForm()
+        context = {'add_word_form': blank_form}
+
+        return render(request, 'words/index.html', context)
 
 class WordsView(View):
     def get(self, request):
+
         words = Word.objects.all()
         word_list = []
         for word in words:

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load semanticui %}
 {% block content %}
     <div class="ui fixed inverted menu">
         <div class="ui container">
@@ -49,15 +50,21 @@
             </div>
         </div>
     </div>
-
     <div class="ui modal">
-        <i class="close icon"></i>
         <div class="header">Add Word</div>
         <div class="content">
             <div class="description">
                 <div class="ui header">
-                    Add a word and assign a category..
+                    Add a word and assign a category...
                 </div>
+                <form class="ui form" action="">
+                    {% render_form add_word_form %}
+                    <div class="ui buttons">
+                        <button class="ui button">Cancel</button>
+                        <div class="or"></div>
+                        <button class="ui positive button" type="submit">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
