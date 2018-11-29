@@ -19,6 +19,7 @@ class WordsView(View):
                 {
                     'category': str(word.category),
                     'title': word.word,
+                    'definition': word.definition
                 }
             )
 
