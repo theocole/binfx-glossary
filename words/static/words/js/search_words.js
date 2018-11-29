@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).ready(function() {
     var content = [
         { category: 'South America', title: 'Brazil' },
         { category: 'South America', title: 'Peru' },
@@ -15,36 +15,34 @@ window.onload = function() {
         { category: 'Africa', title: 'Zimbabwe' },
     ];
 
-    $.getJSON('/words', function(result, content) {
-        console.log(result.results)
-        content = result.results;
+    $.getJSON('/words', function(result) {
+        $('.ui.search')
+            .search({
+                verbose: true,
+                type: 'category',
+                source: result.results,
+                onSelect: function(result, response) {
+                    console.log('selection:')
+                    console.log(result)
+                    $("#word-header")
+                        .empty()
+                    $("#word-definition")
+                        .empty()
+                    $("#word-placeholder")
+                        .show();
+                    $("#word-header")
+                        .text(result.title);
+                    $("#word-definition")
+                        .text(result.category);
+                    $("#word-placeholder")
+                        .hide()
+                    return true;
+                }
+            });
+        console.log("loaded")
     });
+});
 
-    $('.ui.search')
-        .search({
-            verbose: true,
-            type: 'category',
-            source: content,
-            onSelect: function(result, response) {
-                console.log('selection:')
-                console.log(result)
-                $("#word-header")
-                    .empty()
-                $("#word-definition")
-                    .empty()
-                $("#word-placeholder")
-                    .show();
-                $("#word-header")
-                    .text(result.title);
-                $("#word-definition")
-                    .text(result.category);
-                $("#word-placeholder")
-                    .hide()
-                return true;
-            }
-        });
-    console.log("loaded")
-}
 
 
 // TODO: on results click, poll for word and definition
