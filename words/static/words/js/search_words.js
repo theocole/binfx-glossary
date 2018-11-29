@@ -18,7 +18,7 @@ $(document).ready(function() {
                     $("#word-header")
                         .text(result.title);
                     $("#word-definition")
-                        .text(result.category);
+                        .text(result.definition);
                     $("#word-placeholder")
                         .hide()
                     return true;
@@ -27,10 +27,3 @@ $(document).ready(function() {
         console.log("loaded")
     });
 });
-
-
-
-// TODO: on results click, poll for word and definition
-function pollResults() {
-    console.log("polling for word...")
-}
