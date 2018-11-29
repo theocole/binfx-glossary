@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <a class="header item" href=""><i class="home icon"></i></a>
+            <div class="ui simple dropdown item">Words
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="#">Add Word</a>
+                    <a class="item" href="#">Add Category</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui main text container">
+        <h3 class="ui dividing header">
+            Bioinformatics Glossary
+            <div class="sub header">A glossary of bioinformatics terms to help sticky toffee puddings.</div>
+        </h3>
+        <div class="ui search">
+            <div class="ui icon input">
+                <input class="prompt" type="text" placeholder="Search words...">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+        <script src="{% static '/words/js/search_words.js' %}"></script>
+        <div class="ui items">
+            <div hidden id="word-placeholder" class="ui placeholder">
+                <div class="image header">
+                    <div class="line"></div>
+                </div>
+                <div class="paragraph">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div id="word-result" class="item">
+                <div class="content">
+                    <div id="word-header" class="icon header">
+                    </div>
+                    <div class="meta">
+                        <span id="word-definition">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
