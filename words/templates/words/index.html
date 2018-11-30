@@ -59,11 +59,24 @@
                 </div>
                 <form class="ui form" action="/" method="post">
                     {% csrf_token %}
-                    {{ add_word_form }}
-                    <div class="ui buttons">
-                        <button id="cancel-add" class="ui button" type="button">Cancel</button>
-                        <div class="or"></div>
-                        <button class="ui positive button" type="submit">Save</button>
+                    <div class="field">
+                        <label for="{{add_word_form.word.id_for_label}}">Word:</label>
+                        {{add_word_form.word}}
+                    </div>
+                    <div class="field">
+                        <label for="{{add_word_form.category.id_for_label}}">Category:</label>
+                        {{add_word_form.category}}
+                    </div>
+                    <div class="field">
+                        <label for="{{add_word_form.definition.id_for_label}}">Definition:</label>
+                        {{add_word_form.definition}}
+                    </div>
+                    <div class="field">
+                        <div class="ui buttons">
+                            <button id="cancel-add" class="ui button" type="button">Cancel</button>
+                            <div class="or"></div>
+                            <button class="ui positive button" type="submit">Save</button>
+                        </div>
                     </div>
                 </form>
             </div>
