@@ -18,10 +18,9 @@ class IndexView(View):
     def post(self, request):
         success = False
         form = AddWordForm(request.POST)
-        print(form.cleaned_data)
         if form.is_valid():
             success = True
-        print(success)
+            form.save()
 
         blank_form = AddWordForm()
         context = {'add_word_form': blank_form}
