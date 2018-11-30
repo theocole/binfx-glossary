@@ -26,7 +26,8 @@ SECRET_KEY = 'cf6da_dutziii^e8atjre6*-p4(_fni^%ogb%#-!kaafcik^%='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.147.21', 'blooming-meadow-94286.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '192.168.147.21',
+                 'binfx-glossary.herokuapp.com']
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
