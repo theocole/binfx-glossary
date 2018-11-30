@@ -71,4 +71,9 @@ class CategoriesView(View):
         context['add_category_form'] = add_category_form
 
         categories = Category.objects.all()
+        words_by_category = {
+            category: Word.objects.filter(category=category)
+            for category in categories
+        }
+        context['words_by_category'] = words_by_category
         return render(request, 'words/categories.html', context)

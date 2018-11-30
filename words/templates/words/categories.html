@@ -1,6 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    cat
+<div class="ui breadcrumb">
+<i class="search icon"></i>
+    {% for category, words in words_by_category.items %}
+        <a class="section" href="#{{category.id}}">
+            {{ category.name }}
+        </a>
+        <div class="divider"> / </div>
+    {% endfor %}
+</div>
+{% for category, words in words_by_category.items %}
+<h2 id="{{ category.id }}"class="ui dividing header">{{ category.name }}</h2>
+<div class="ui relaxed list">
+    {% for word in words %}
+    <div class="item">
+        <div class="header">{{ word.word }}</div>
+        {{ word.definition }}
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
 {% endblock content %}
 
