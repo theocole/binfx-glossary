@@ -14,13 +14,16 @@ class Category(models.Model):
         return str(self.name)
 
 class Word(models.Model):
-    word = models.CharField(max_length=255, unique=True)
+    word = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     definition = models.TextField()
 
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (word, category)
 
     def __str__(self):
         return str(self.word)

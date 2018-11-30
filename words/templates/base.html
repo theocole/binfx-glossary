@@ -14,19 +14,84 @@
         <script src="{% static '/words/js/base.js' %}"></script>
     </head>
     <body>
-    <div class="ui fixed inverted menu">
-        <div class="ui container">
-            <a class="header item" href=""><i class="home icon"></i></a>
-            <div class="ui simple dropdown item">Words
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a id="add-word" class="item" href="#">Add Word</a>
-                    <a id="view-catergories" class="item" href="#">View by Category</a>
+        <div class="ui fixed inverted menu">
+            <div class="ui container">
+                <a class="header item" href="{% url 'index' %}"><i class="home icon"></i></a>
+                <div class="ui simple dropdown item">Words
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a id="add-word" class="item" href="#">Add Word</a>
+                        <a id="add-category" class="item" href="#">Add Category</a>
+                        <a id="view-catergories" class="item" href="{% url 'index' %}">Search by Word</a>
+                        <a id="view-catergories" class="item" href="{% url 'categories' %}">View by Category</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-        {% block content %}
-        {% endblock content %}
+        <div class="ui main text container">
+            <h3 class="ui dividing header">
+                Bioinformatics Glossary
+                <div class="sub header">A glossary of bioinformatics terms to help sticky toffee puddings.</div>
+            </h3>
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div id="add-word-modal" class="ui modal">
+            <div class="header">Add Word</div>
+            <div class="content">
+                <div class="description">
+                    <div class="ui header">
+                        Add a word and assign a category...
+                    </div>
+                    <form class="ui form" action="/" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label for="{{add_word_form.word.id_for_label}}">Word:</label>
+                            {{add_word_form.word}}
+                        </div>
+                        <div class="field">
+                            <label for="{{add_word_form.category.id_for_label}}">Category:</label>
+                            {{add_word_form.category}}
+                        </div>
+                        <div class="field">
+                            <label for="{{add_word_form.definition.id_for_label}}">Definition:</label>
+                            {{add_word_form.definition}}
+                        </div>
+                        <div class="field">
+                            <div class="ui buttons">
+                                <button id="cancel-add" class="ui button" type="button">Cancel</button>
+                                <div class="or"></div>
+                                <button class="ui positive button" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="add-category-modal" class="ui modal">
+            <div class="header">Add Category</div>
+            <div class="content">
+                <div class="description">
+                    <div class="ui header">
+                        Add a new category...
+                    </div>
+                    <form class="ui form" action="/" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label for="{{add_category_form.name.id_for_label}}">Name:</label>
+                            {{add_category_form.name}}
+                        </div>
+                        <div class="field">
+                            <div class="ui buttons">
+                                <button id="cancel-add" class="ui button" type="button">Cancel</button>
+                                <div class="or"></div>
+                                <button class="ui positive button" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="{% static '/words/js/add_word_modal.js' %}"></script>
     </body>
 </html>

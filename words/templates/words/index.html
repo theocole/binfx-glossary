@@ -1,73 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="ui main text container">
-        <h3 class="ui dividing header">
-            Bioinformatics Glossary
-            <div class="sub header">A glossary of bioinformatics terms to help sticky toffee puddings.</div>
-        </h3>
-        <div class="ui search">
-            <div class="ui icon input">
-                <input id="word-search" class="prompt" type="text" placeholder="Search words...">
-                <i class="search icon"></i>
-            </div>
-            <div class="results"></div>
+    <div class="ui search">
+        <div class="ui icon input">
+            <input id="word-search" class="prompt" type="text" placeholder="Search words...">
+            <i class="search icon"></i>
         </div>
-        <script src="{% static '/words/js/search_words.js' %}"></script>
-        <div class="ui items">
-            <div hidden id="word-placeholder" class="ui placeholder">
-                <div class="image header">
-                    <div class="line"></div>
-                </div>
-                <div class="paragraph">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
+        <div class="results"></div>
+    </div>
+    <script src="{% static '/words/js/search_words.js' %}"></script>
+    <div class="ui items">
+        <div hidden id="word-placeholder" class="ui placeholder">
+            <div class="image header">
+                <div class="line"></div>
             </div>
-            <div id="word-result" class="item">
-                <div class="content">
-                    <div id="word-header" class="icon header">
-                        <div id="word-category" class="sub header"></div>
-                    </div>
-                    <div class="meta">
-                        <span id="word-definition">
-                        </span>
-                    </div>
+            <div class="paragraph">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div id="word-result" class="item">
+            <div class="content">
+                <div id="word-header" class="icon header">
+                    <div id="word-category" class="sub header"></div>
+                </div>
+                <div class="meta">
+                    <span id="word-definition">
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="ui modal">
-        <div class="header">Add Word</div>
-        <div class="content">
-            <div class="description">
-                <div class="ui header">
-                    Add a word and assign a category...
-                </div>
-                <form class="ui form" action="/" method="post">
-                    {% csrf_token %}
-                    <div class="field">
-                        <label for="{{add_word_form.word.id_for_label}}">Word:</label>
-                        {{add_word_form.word}}
-                    </div>
-                    <div class="field">
-                        <label for="{{add_word_form.category.id_for_label}}">Category:</label>
-                        {{add_word_form.category}}
-                    </div>
-                    <div class="field">
-                        <label for="{{add_word_form.definition.id_for_label}}">Definition:</label>
-                        {{add_word_form.definition}}
-                    </div>
-                    <div class="field">
-                        <div class="ui buttons">
-                            <button id="cancel-add" class="ui button" type="button">Cancel</button>
-                            <div class="or"></div>
-                            <button class="ui positive button" type="submit">Save</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="{% static '/words/js/add_word_modal.js' %}"></script>
-{% endblock content %}
+
+
+    {% endblock content %}

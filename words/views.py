@@ -3,27 +3,43 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
-from words.models import Word
 from words.forms import AddWordForm
+from words.forms import AddCategoryForm
+from words.models import Category
+from words.models import Word
 
 # Create your views here.
 class IndexView(View):
     def get(self, request):
-        form = AddWordForm()
-        context = {'add_word_form': form}
+        context = {}
+        add_word_form = AddWordForm()
+        context['add_word_form'] = add_word_form
         success = True
+
+        add_category_form = AddCategoryForm()
+        context['add_category_form'] = add_category_form
 
         return render(request, 'words/index.html', context)
 
     def post(self, request):
+        context = {}
         success = False
-        form = AddWordForm(request.POST)
-        if form.is_valid():
-            success = True
-            form.save()
+        word_form = AddWordForm(request.POST)
+        category_form = AddCategoryForm(request.POST)
 
-        blank_form = AddWordForm()
-        context = {'add_word_form': blank_form}
+        if word_form.is_valid():
+            success = True
+            word_form.save()
+
+        if category_form.is_valid():
+            success = True
+            category_form.save()
+
+        add_word_form = AddWordForm()
+        context['add_word_form'] = add_word_form
+
+        add_category_form = AddCategoryForm()
+        context['add_category_form'] = add_category_form
 
         return render(request, 'words/index.html', context)
 
@@ -43,3 +59,16 @@ class WordsView(View):
 
         results = {"results": word_list}
         return JsonResponse(results)
+
+class CategoriesView(View):
+    def get(self, request):
+        context = {}
+
+        add_word_form = AddWordForm()
+        context['add_word_form'] = add_word_form
+
+        add_category_form = AddCategoryForm()
+        context['add_category_form'] = add_category_form
+
+        categories = Category.objects.all()
+        return render(request, 'words/categories.html', context)
