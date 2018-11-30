@@ -14,6 +14,18 @@
         <script src="{% static '/words/js/base.js' %}"></script>
     </head>
     <body>
+    <div class="ui fixed inverted menu">
+        <div class="ui container">
+            <a class="header item" href=""><i class="home icon"></i></a>
+            <div class="ui simple dropdown item">Words
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a id="add-word" class="item" href="#">Add Word</a>
+                    <a id="view-catergories" class="item" href="#">View by Category</a>
+                </div>
+            </div>
+        </div>
+    </div>
         {% block content %}
         {% endblock content %}
     </body>
