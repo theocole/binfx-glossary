@@ -23,7 +23,7 @@ class Word(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = (word, category)
+        unique_together = ('word', 'category')
 
     def __str__(self):
         return str(self.word)
